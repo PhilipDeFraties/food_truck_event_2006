@@ -25,8 +25,8 @@ class FoodTruck
   end
 
   def potential_revenue
-    @inventory.sum do |item|
-      item[0].price.delete("$").to_f * item[1]
+    @inventory.sum do |item, quantity|
+      item.price.delete("$").to_f * quantity
     end
   end
 end
