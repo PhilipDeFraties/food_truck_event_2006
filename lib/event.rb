@@ -36,4 +36,19 @@ class Event
       item.name
     end.sort
   end
+
+  def total_inventory
+    total = {}
+    all_items.each do |item|
+      food_trucks = food_trucks_that_sell(item)
+      quantity = food_trucks.sum do |food_truck|
+        food_truck.check_stock(item)
+      end
+      total[item] = {
+        food_trucks: food_trucks,
+        quantity: quantity
+      }
+    end
+    total
+  end
 end
