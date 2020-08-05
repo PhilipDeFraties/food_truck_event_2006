@@ -146,7 +146,19 @@ class EventTest < MiniTest::Test
     food_truck3.stock(item3, 10)
 
     assert_equal 100, event.total_inventory[item1][:quantity]
-    assert_equal [food_truck1, food_truck3], event.total_inventory[item1][:food_trucks]
+    assert_equal [food_truck1, food_truck3],
+     event.total_inventory[item1][:food_trucks]
+
+    assert_equal 7, event.total_inventory[item2][:quantity]
+    assert_equal [food_truck1], event.total_inventory[item2][:food_trucks]
+
+    assert_equal 35, event.total_inventory[item3][:quantity]
+    assert_equal [food_truck2, food_truck3],
+     event.total_inventory[item3][:food_trucks]
+
+    assert_equal 50, event.total_inventory[item4][:quantity]
+    assert_equal [food_truck2], event.total_inventory[item4][:food_trucks]
+    
     assert_equal 4, event.total_inventory.count
   end
 
