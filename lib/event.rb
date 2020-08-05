@@ -22,4 +22,12 @@ class Event
       food_truck.check_stock(item) > 0
     end
   end
+
+  def all_items
+    all_items = @food_trucks.flat_map do |food_truck|
+      food_truck.inventory.keys.find_all do |item|
+        food_truck.check_stock(item) > 0
+      end
+    end.uniq
+  end
 end
